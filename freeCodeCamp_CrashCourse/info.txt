@@ -1,0 +1,2 @@
+revising basic concepts from -
+https://www.freecodecamp.org/news/python-code-examples-sample-script-coding-tutorial-for-beginners/

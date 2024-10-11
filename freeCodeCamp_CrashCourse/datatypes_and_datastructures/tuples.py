@@ -4,7 +4,7 @@ Tuples
 
 To define a tuple in Python, we use parentheses () and separate the elements with a comma.
 
-Indexing is same as that of string or list (can use negative indices)
+Indexing & slicing is same as that of string or list (can use negative indices)
 
 Can contain elements of different datatypes
 
@@ -58,3 +58,30 @@ Use case: Use a tuple to represent a structured object with different fields, li
           record (name, age, salary).
 
 '''
+
+# Tuple methods - There are two built-in tuple methods in Python
+
+freecodecampmy_tuple = (4, 4, 5, 6, 6, 7, 8, 9, 10)
+
+print(freecodecampmy_tuple.count(6))
+
+print(freecodecampmy_tuple.index(7))
+
+'''
+Tip: tuples are immutable. They cannot be modified, so we can't add, update, or remove elements 
+     from the tuple. If we need to do so, then we need to create a new copy of the tuple.
+'''
+
+
+# Tuple assignment
+
+'''
+In Python, we have a really cool feature called Tuple Assignment. 
+With this type of assignment, we can assign values to multiple variables on the same line.
+'''
+
+a, b = 1, 2
+
+print(a)
+
+a, b = b, a    # This common way to swap the values

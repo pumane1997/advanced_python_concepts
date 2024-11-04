@@ -14,6 +14,14 @@ class Point:
         else:
             return False
 
+class GuIPoint(Point):
+
+    def draw(self, canvas, size=5, color="red"):
+        if canvas.isdown():
+            canvas.penup()
+        canvas.goto(self.x, self.y)
+        canvas.pendown()
+        canvas.dot(size, color)
 
 class Rectangle:
 
@@ -25,19 +33,9 @@ class Rectangle:
         return (self.point2.x - self.point1.x) * \
                (self.point2.y - self.point1.y)
 
-''' 
-We now need to modify this code to draw the rectangle
+class GuIRectangle(Rectangle): 
 
-We can add draw method to rectangle class, but this would not be the best approach.
-
-!! It is mostly not the best practice to modify your classes when you can extend them 
-'''
-
-class GuIRectangle(Rectangle): # -> GuIRectangle inherits from Rectangle so it will have
-                                    #all the attributes and method of rectangle class
-
-    def draw(self, canvas): # included canvas param as well, rather than call turtle module here
-                            # it should be done in the main code and should have placeholder over here
+    def draw(self, canvas): 
         
         canvas.penup()
 
@@ -53,7 +51,7 @@ class GuIRectangle(Rectangle): # -> GuIRectangle inherits from Rectangle so it w
             canvas.forward(horizontal_length)
             canvas.left(90)
             canvas.forward(vertical_length)
-            turtle.done()
+            
             
         else:
             horizontal_length = self.point1.x - self.point2.x 
@@ -69,16 +67,9 @@ class GuIRectangle(Rectangle): # -> GuIRectangle inherits from Rectangle so it w
             myturtle.forward(vertical_length)
             turtle.done()
 
-'''
-This class addition is complete
-'''
 
-# Create rectangle object
-# rectangle = Rectangle(Point(randint(0, 9), randint(0, 9)),
-#               Point(randint(10, 19), randint(10, 19))) -> this is not needed now, we'll use GUIRectangle
-
-gui_rectangle = GuIRectangle(Point(randint(0, 9), randint(0, 9)),
-                             Point(randint(10, 19), randint(10, 19)))
+gui_rectangle = GuIRectangle(Point(randint(0, 100), randint(0, 100)),
+                             Point(randint(0, 100), randint(0, 100)))
 # Print rectangle coordinates
 print("Rectangle Coordinates: ",
       gui_rectangle.point1.x, ",",
@@ -87,7 +78,7 @@ print("Rectangle Coordinates: ",
       gui_rectangle.point2.y)
 
 # Get point and area from user
-user_point = Point(float(input("Guess x: ")), float(input("Guess y: ")))
+user_point = GuIPoint(float(input("Guess x: ")), float(input("Guess y: ")))
 user_area = float(input("Guess rectangle area: "))
 
 # Print out the game result
@@ -98,5 +89,8 @@ myturtle = turtle.Turtle()
 
 gui_rectangle.draw(canvas=myturtle)
 
+user_point.draw(canvas=myturtle)
+
+turtle.done()
 
 

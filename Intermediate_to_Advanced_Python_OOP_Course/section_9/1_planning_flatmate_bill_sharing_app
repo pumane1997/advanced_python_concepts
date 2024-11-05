@@ -1,0 +1,48 @@
+
+'''
+Asks your, your flatmates names, electricity bill, no.of days you lived, 
+bill per head for month, generates the same bill
+'''
+
+'''
+1. You should not straight away start writing code 
+2. First thing you should do is think about design of your application
+3. Once you have design in your mind, you should object types, classes you need &
+then add attributes and methods to it.
+~ This is OOP way to make programs ~
+
+How do you create design? -
+
+1. Create an empty text file
+2. Write title of program
+3. Write description of what it does -> be as specific as you can
+    - what it gets as input
+    - what it returns as output
+4. What Objects will you have
+    - This is subjective but as general guide, if you have written a good description,
+    look at the nouns.
+    - Think and decide which ones should actually be objects, which ones should be attributes 
+    of certain objects.
+    - Think about what those objects 'DO' and come up with methods 
+5. Start creating classes
+    - based on design, create class with init method and other methods without code
+    - Writing doc string is a good practice
+    - write basic code after creating classes to demo how we will instansiate objects,
+    just print out basic outputs.
+
+    !! There are two ways to instansiate objects - 
+
+    marry = Flatmate(name="Marry", days_in_house=25)
+    john.pays(bill=the_bill)
+
+    marry = Flatmate("Marry", 25)
+    john.pays(the_bill)
+
+    Both ways are correct, and it is up to the programmer's style whether to use one or the other, 
+    but the first code has the advantage of being more readable because, for instance, it 
+    immediately tells the reader that 25 is the number of days.
+
+    It is recommended that, as a beginner, you do include argument names in calls so you can 
+    understand your code better.
+
+'''

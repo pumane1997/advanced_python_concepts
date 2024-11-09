@@ -4,6 +4,10 @@ pdf = FPDF(orientation='P', unit='pt', format='A4') # this creates a PDF but wit
 
 pdf.add_page() # page is added, now we can add content
 
+# Adding image
+
+pdf.image('./files/house.png', w=30, h=30)
+
 pdf.set_font(family='Times', size=24, style='B') # setting content format
 
 # fpdf works based on cells (kind of cells in excel)
@@ -15,3 +19,4 @@ pdf.cell(w=100, h=40, txt='Period', border=1)
 pdf.cell(w=125, h=40, txt='Nov 2024', border=1) # actual period
 
 pdf.output('bill.pdf')
+

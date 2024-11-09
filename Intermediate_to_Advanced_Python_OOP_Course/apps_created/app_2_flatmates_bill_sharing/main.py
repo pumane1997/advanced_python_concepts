@@ -1,81 +1,9 @@
 from fpdf import FPDF
-import webbrowser
+import flat
+import reports
 
-class Bill:
-    '''
-    This represents the Bill object
-    '''
-
-    def __init__(self, amount, period, period_name):
-        self.amount = amount
-        self.period = period
-        self.period_name = period_name
-
-
-class Flatmate:
-    '''
-    This class represents a flatmate
-    '''
-
-    def __init__(self, name, days_in_house):
-        self.name = name
-        self.days_in_house = days_in_house
-
-    def pay(self, bill, other_flatmate):
-        total_bill_amount = bill.amount 
-        flatmate_days_in_house = self.days_in_house
-        other_flatmate_days_in_house = other_flatmate.days_in_house
-        bill_contribution_percentage = flatmate_days_in_house/(flatmate_days_in_house+other_flatmate_days_in_house)
-        bill_to_pay = total_bill_amount*bill_contribution_percentage
-        return bill_to_pay
-
-class PdfReport:
-    '''
-    This class represents the PdfReport that needs to be generated
-    '''
-
-    def __init__(self, filename):
-        self.filename = filename
-        
-    def generatePDF(self, pdf, flatmate1, flatmate2, bill):
-        '''
-        A method to generate a pdf
-        '''
-        # Adding page
-        pdf.add_page()
-
-        # Adding house image
-        pdf.image('files/house.png', w=30, h=30)
-        
-        # Adding header and header format
-        pdf.set_font(family='Times', size=24, style='B')
-        pdf.cell(w=0, h=80, txt='Flatmate Bill', border=0, align='C', ln=1)
-
-        # Adding an empty cell
-        pdf.cell(w=0, h=20, txt='', border=0, ln=1)
-        
-        # Adding further content
-        pdf.set_font(family='Times', size=14, style='B')
-        pdf.cell(w=200, h=40, txt='Period', border=0)
-        pdf.cell(w=200, h=40, txt=f'{bill.period_name}', border=0, ln=1)
-
-        # Adding an empty cell
-        pdf.cell(w=0, h=20, txt='', border=0, ln=1)
-
-        # Adding details in bill
-        pdf.set_font(family='Times', size=14, style='B')
-        pdf.cell(w=200, h=40, txt='Name', border=0)
-        pdf.cell(w=200, h=40, txt='Total Amount', border=0, ln=1)
-        pdf.set_font(family='Times', size=12)
-        pdf.cell(w=200, h=40, txt=f'{flatmate1.name}', border=0)
-        pdf.cell(w=200, h=40, txt=f'{round(flatmate1.pay(bill, flatmate2), 2)}', border=0, ln=1)
-        pdf.cell(w=200, h=40, txt=f'{flatmate2.name}', border=0)
-        pdf.cell(w=200, h=40, txt=f'{round(flatmate2.pay(bill, flatmate1), 2)}', border=0, ln=1)
-        
-        pdf.output(f'{self.filename}.pdf')
-
-        webbrowser.open(f'{self.filename}.pdf')
-
+'''
+Testing with some manual values
 
 nov_bill = Bill(500, 30, 'November 2025')
 pratik = Flatmate(name='Pratik', days_in_house=25)
@@ -84,3 +12,27 @@ pratik_contribution = pratik.pay(nov_bill, shraddha)
 shraddha_contribution = shraddha.pay(nov_bill, shraddha)
 pdf = FPDF(orientation='P', unit='pt', format='A4')
 PdfReport('Nov2025Bill').generatePDF(pdf, pratik, shraddha, nov_bill)
+'''
+# Take inputs for Bill Instance 
+bill_amount = float(input('What is the total bill amount?: '))
+bill_period_name = str(input('Which period is this bill for?: '))
+bill_days = int(input(f'How many days does {bill_period_name} has?: '))
+
+# Take inputs for flatmate 1
+flatmate1_name = str(input('What is the name of flatmate 1?: '))
+flatmate1_days_in_house = int(input(f'How many days did {flatmate1_name} stayed in house for this period?: '))
+
+# Take inputs for flatmate 2
+flatmate2_name = str(input('What is the name of flatmate 2?: '))
+flatmate2_days_in_house = int(input(f'How many days did {flatmate2_name} stayed in house for this period?: '))
+
+# Take inputs for PDF Report
+bill_file_name = str(input('What should be the name of the bill report?: '))
+
+bill = flat.Bill(bill_amount, bill_days, bill_period_name)
+flatmate1 = flat.Flatmate(flatmate1_name, flatmate1_days_in_house)
+flatmate2 = flat.Flatmate(flatmate2_name, flatmate2_days_in_house)
+print(f'{flatmate1_name} pays {flatmate1.pay(bill, flatmate2)}')
+print(f'{flatmate1_name} pays {flatmate2.pay(bill, flatmate1)}')
+pdf = FPDF(orientation='P', unit='pt', format='A4')
+reports.PdfReport(bill_file_name).generatePDF(pdf, flatmate1, flatmate2, bill)

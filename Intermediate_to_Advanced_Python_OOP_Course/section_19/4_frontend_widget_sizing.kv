@@ -1,0 +1,21 @@
+# There are various ways to size the widets but using relative sizes is recommended
+
+<FirstScreen>: 
+    GridLayout:
+        cols: 1 
+        padding: 10 # this creates padding between widgets and screen manager
+        spacing: 10 # this creates padding between widgets
+        Image: 
+            source: 'files/Id_card_photo.jpg'
+            size_hint_y: 0.7 # This prperty expects a weight (number) that defines how muc space 
+                             # the widget should take relative to entire screen size
+        TextInput:
+            size_hint_y: 0.2
+        Button:
+            text: 'Search Image'
+            size_hint_y: 0.1
+
+<RootWidget>:
+    FirstScreen:
+        id: first_screen
+        name: 'first_screen'

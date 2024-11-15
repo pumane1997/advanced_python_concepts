@@ -1,0 +1,28 @@
+# We will add some functionality in button
+
+<FirstScreen>: 
+    GridLayout:
+        cols: 1 
+        padding: 10
+        spacing: 10
+        Image: 
+            # source: 'files/Id_card_photo.jpg'
+            id = img
+            size_hint_y: 0.7
+        TextInput:
+            size_hint_y: 0.2
+        Button:
+            text: 'Search Image'
+            size_hint_y: 0.1
+            on_press: root.search_image()  # this adds behavior to button on pressing
+                                           # on pressing the button, this will execute 
+                                           # search_image() method from firstscreen class
+
+# What is root? - it is a special variable that kivy makes available for us and this variable holds
+# the current class, or more accurately, instance of the current class (firstscreen) - the instance
+# is created by kivy in background
+
+<RootWidget>:
+    FirstScreen:
+        id: first_screen
+        name: 'first_screen'

@@ -1,0 +1,19 @@
+<FirstScreen>: # This has to be same as name of screen class in main file
+               # Under each screen, we have to write widgets
+    GridLayout: # Specifying layout
+        cols: 1 # With the GridLayout we have to declare how many columns we want to have - this is a property of layout   
+        Image: # Declare what widgets you want to have
+            source: 'files/Id_card_photo.jpg' # We add the properties of widget - This will be the file path of the image we want to display
+        TextInput: 
+            # If you think that the widget has no property (like this one), just leave it as it is - you can add later if needed
+        Button:
+            text: 'Search Image'
+
+# if you have other screen, you can mention that in the similar way
+# <SecondScreen>:
+
+<RootWidget>: # This is mandatory
+    FirstScreen # Just declare children of RootWidget
+        id: first_screen
+        name: 'first_screen'
+

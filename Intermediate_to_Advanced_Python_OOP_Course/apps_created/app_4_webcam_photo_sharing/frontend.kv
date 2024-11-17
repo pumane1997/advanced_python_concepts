@@ -28,28 +28,33 @@
             source: 'files/captured_image.png'
             id: img
             size_hint_y: 0.6
-            index: 0
-        Button:
-            id: create_link
-            text: 'Start'
-            size_hint_y: 0.1
-            on_press: 
         Button:
             id: camera_button
-            text: 'Start'
+            text: 'Create link'
             size_hint_y: 0.1
-            on_press:
-        Button:
-            text: 'Capture'
+            on_press: root.create_link() 
+        Label:
+            id: link
+            text: ''
             size_hint_y: 0.1
-            on_press:
-        Button:
-            text: 'Capture'
-            size_hint_y: 0.1
-            on_press: 
+        GridLayout:
+            cols: 2
+            padding: 10
+            spacing: 10
+            Button:
+                text: 'Copy Link'
+                size_hint_y: 0.1
+                on_press: root.copy_link() 
+            Button:
+                text: 'Open Link'
+                size_hint_y: 0.1
+                on_press: root.open_link()
 
 
 <RootWidget>:
     CameraScreen:
         id: camera_screen
         name: 'camera_screen'
+    ImageScreen:
+        id: image_screen
+        name: 'image_screen'

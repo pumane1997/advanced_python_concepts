@@ -12,19 +12,25 @@ Builder.load_file('frontend.kv')
 class CameraScreen(Screen): # we are not going to build separate WebCam 
                             # class becasue we already have this CameraScreen 
                             # class which kind of represents WebCam. This is both
-                            #  kivy screen and our webcam object 
+                            # kivy screen and our webcam object 
+    '''This class represents the First screen which has webcam'''    
     
     def start(self):
+        '''Function to start the webcam and set button to stop'''
+        self.ids.cam.opacity = 1
         self.ids.cam.play = True
         self.ids.camera_button.text = 'Stop'
         self.ids.cam.texture = self.ids.cam._camera.texture
 
     def stop(self):
+        '''Function to stop the webcam and set button to start'''
+        self.ids.cam.opacity = 0
         self.ids.cam.play = False
         self.ids.camera_button.text = 'Start'
         self.ids.cam.texture = None
 
     def capture(self):
+        '''Function to capture the image switch to second screen'''
         camera = self.ids.cam
         current_time = time.strftime('%Y%m%d-%H%M%S')
         self.filename = 'captured_image'+current_time+'.png' # if you want anyy variable to be part of the class, then you have
@@ -45,6 +51,9 @@ class CameraScreen(Screen): # we are not going to build separate WebCam
 
 
 class ImageScreen(Screen):
+
+    '''This class represents the second screen which has captured image and option to
+    generate/copy/open the link''' 
     
     link_message = 'Create a link first!' # This is a class variable and not and instance variable - this will be same for every instance
 

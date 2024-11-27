@@ -26,13 +26,9 @@
         </section>
 
         <section>
-            <!-- <a href = '/bill'>Go to bill page</a> ->  This is not an ideal way to link other webpage 
-             because if we change this url in main app, this will fail -->
-            <!-- -->
-            <!-- So instead of using static ones, to make it dynamic - we use url_for (py func) and pass 
-             the class of url so on clicking it the class is instansiated-->
+            
             <a href = {{url_for('BillFormPage')}}>Go to bill page</a>
-             <!-- double curly brackets make possible to write python code in html file to make things dynamic-->
+            
         </section>
 
     </main>

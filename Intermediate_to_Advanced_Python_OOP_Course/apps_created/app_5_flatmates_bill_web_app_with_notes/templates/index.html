@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flatmates Bill App</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Flatmates Bill Sharing App!</h1>
+    </header>
+    <main>
+        <section>
+            <p>Managing shared expenses has never been easier! Flatmates Bill is your ultimate solution for splitting bills seamlessly between two flatmates. Whether it's rent, utilities, or any shared household expense, this app simplifies the process and ensures fairness.</p>
+        </section>
+        <section>
+            <h2>What We Offer:</h2>
+            <ul>
+                <li><strong>Accurate Calculations:</strong> Enter the total bill amount and the number of days each flatmate stayed during the period. The app will calculate how much each person owes based on their share.</li>
+                <li><strong>Detailed Reports:</strong> Generate a professional PDF report with the names of the flatmates, the billing period, and the precise amount each person has to pay.</li>
+                <li><strong>Easy and Intuitive Interface:</strong> Designed to make bill-sharing stress-free, so you can focus on living harmoniously with your flatmate.</li>
+            </ul>
+        </section>
+        <section>
+            <p>Say goodbye to awkward money conversations and let Flatmates Bill handle the math for you. Get started today!</p>
+        </section>
+
+        <section>
+            <!-- <a href = '/bill'>Go to bill page</a> ->  This is not an ideal way to link other webpage 
+             because if we change this url in main app, this will fail -->
+            <!-- -->
+            <!-- So instead of using static ones, to make it dynamic - we use url_for (py func) and pass 
+             the class of url so on clicking it the class is instansiated-->
+            <a href = {{url_for('BillFormPage')}}>Go to bill page</a>
+             <!-- double curly brackets make possible to write python code in html file to make things dynamic-->
+        </section>
+
+    </main>
+    <footer>
+        <p>&copy; 2024 Flatmates Bill Sharing App</p>
+    </footer>
+
+</body>
+</html>

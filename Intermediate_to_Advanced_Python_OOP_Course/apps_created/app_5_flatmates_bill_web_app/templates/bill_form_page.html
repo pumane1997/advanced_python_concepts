@@ -8,22 +8,12 @@
 <body>
     <h2>The Bill Form</h2>
     <p>Fill the form and click the button to get the results</p>
-    <form> <!-- Between the form tags will go all the widgets of the form -->
-           <!-- -->
-           <!-- There are different types of widgets like Lable, Text input etc -->
-        <label>Bill Amount: </label>
-        <input type="text"> </input>
-    </form>
-    <!-- Above is one way to create the form but not the best way-->
-    <!-- Rather than use html to create widgets, we should use python code in main.py-->
+
     <form action="/result" method="post">
         <hr>
         <p>Bill Details</p>
-        {{bill_form.amount.label}} {{bill_form.amount}} <!-- bill_form is variable whose value is a class (created 
-                                                        for form) & after that there would be class variable (amount)
-                                                        that needs to be in our form class
-                                                        .label is method of StringField class -->
-        <br> <!-- adds new line -->
+        {{bill_form.amount.label}} {{bill_form.amount}} 
+        <br> 
         {{bill_form.period_name.label}} {{bill_form.period_name}}
         <br>
         {{bill_form.days.label}} {{bill_form.days}}

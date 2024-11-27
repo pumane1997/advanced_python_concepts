@@ -1,0 +1,9 @@
+We are going to have class/object type for each page, so three classes
+
+- HomePage class: will create home page instance  
+- BillFormPage class: will create bill form page instance
+- ResultPage class: will create result page instance
+
+and additional class to generate bill form 
+
+- BillForm class: will generate bill form

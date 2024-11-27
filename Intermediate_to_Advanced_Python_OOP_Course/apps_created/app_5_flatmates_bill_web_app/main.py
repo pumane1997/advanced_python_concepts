@@ -3,8 +3,9 @@ from wtforms import Form, StringField, SubmitField
 from flask import Flask # 'Flask' is a class/object type that represents a webapp
 from flask import render_template # render_template is a function - helps you connect your app to external html files
 from flask import request # request is used for getting the data that user inputs
-from flatmates_bill import flat
-from flatmates_bill import reports
+from flat import Bill, Flatmate
+from reports import PdfReport, FileSharer
+from fpdf import FPDF
 
 # Method view is a class-based view that dispatches request methods to the corrosponding 
 # class methods. Ex: if you implement a 'get' method, it will be used to handle 'GET' requests
@@ -63,47 +64,56 @@ class ResultPage(MethodView):
         billform = BillForm(request.form)
 
         # Take inputs for Bill Instance 
-        bill_amount = billform.amount.data
+        bill_amount = int(billform.amount.data)
         bill_period_name = billform.period_name.data
-        bill_days = billform.days
+        bill_days = int(billform.days.data)
 
         # Take inputs for flatmate 1
         flatmate1_name = billform.name1.data
-        flatmate1_days_in_house = billform.days_in_house1.data
+        flatmate1_days_in_house = int(billform.days_in_house1.data)
 
         # Take inputs for flatmate 2
         flatmate2_name = billform.name2.data
-        flatmate2_days_in_house = billform.days_in_house2.data
+        flatmate2_days_in_house = int(billform.days_in_house2.data)
 
         # Take inputs for PDF Report
         bill_file_name = billform.file_name.data
 
-        bill = flat.Bill(bill_amount, bill_days, bill_period_name)
-        flatmate1 = flat.Flatmate(flatmate1_name, flatmate1_days_in_house)
-        flatmate2 = flat.Flatmate(flatmate2_name, flatmate2_days_in_house)
-        # print(f'{flatmate1_name} pays {flatmate1.pay(bill, flatmate2)}')
-        # print(f'{flatmate1_name} pays {flatmate2.pay(bill, flatmate1)}')
+        # Processing the data
+        bill = Bill(bill_amount, bill_days, bill_period_name)
+        flatmate1 = Flatmate(flatmate1_name, flatmate1_days_in_house)
+        flatmate2 = Flatmate(flatmate2_name, flatmate2_days_in_house)
+        
         pdf = FPDF(orientation='P', unit='pt', format='A4')
-        reports.PdfReport(bill_file_name).generatePDF(pdf, flatmate1, flatmate2, bill)
+        PdfReport(bill_file_name).generatePDF(pdf, flatmate1, flatmate2, bill)
 
-        return f'{flatmate1_name} pays {flatmate1.pay(bill, flatmate2)} & {flatmate1_name} pays {flatmate2.pay(bill, flatmate1)}'
+        cloud_invoice_link = FileSharer(f'{bill_file_name}.pdf').share()
+
+        return render_template('results.html',
+                                name1 =  flatmate1_name,
+                                name2 =  flatmate2_name,
+                                amount1 = flatmate1.pay(bill, flatmate2),
+                                amount2 = flatmate2.pay(bill, flatmate1),
+                                link = cloud_invoice_link)
 
 class BillForm(Form):
 
     # we will have to initialize this class - in BillFormPage() class
     # rather than creating the form with htnl, we will create it here
-    amount = StringField("Bill Amount: ") # StringField class is instansiated
+    amount = StringField("Bill Amount: ", default='100') # StringField class is instansiated
     # above way adds lablel as well as input field
-    period_name = StringField("Bill Period: ")
-    days = StringField("Days in period: ")
+    # the second arg add default value. This is good for developmentg because you wont have to 
+    # enter values for interating everytime 
+    period_name = StringField("Bill Period: ", default='November 2024')
+    days = StringField("Days in period: ", default='30')
 
-    name1 = StringField("Name: ")
-    days_in_house1 = StringField("Days in house: ")
+    name1 = StringField("Name: ", default='Pratik')
+    days_in_house1 = StringField("Days in house: ", default='21')
 
-    name2 = StringField("Name: ")
-    days_in_house2 = StringField("Days in house: ")
+    name2 = StringField("Name: ", default='Shraddha')
+    days_in_house2 = StringField("Days in house: ", default='15')
 
-    file_name = StringField("Name of the Bill: ")
+    file_name = StringField("Name of the Bill: ", default='Nov2024Bill')
 
     button = SubmitField('Calculate')
 

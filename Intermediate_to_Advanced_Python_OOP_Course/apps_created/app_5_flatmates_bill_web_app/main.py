@@ -22,6 +22,46 @@ class BillFormPage(MethodView):
         bill_form = BillForm() 
         return render_template('bill_form_page.html', 
                                bill_form=bill_form) 
+
+    def post(self):
+        
+        billform = BillForm(request.form)
+
+        # Take inputs for Bill Instance 
+        bill_amount = int(billform.amount.data)
+        bill_period_name = billform.period_name.data
+        bill_days = int(billform.days.data)
+
+        # Take inputs for flatmate 1
+        flatmate1_name = billform.name1.data
+        flatmate1_days_in_house = int(billform.days_in_house1.data)
+
+        # Take inputs for flatmate 2
+        flatmate2_name = billform.name2.data
+        flatmate2_days_in_house = int(billform.days_in_house2.data)
+
+        # Take inputs for PDF Report
+        bill_file_name = billform.file_name.data
+
+        # Processing the data
+        bill = Bill(bill_amount, bill_days, bill_period_name)
+        flatmate1 = Flatmate(flatmate1_name, flatmate1_days_in_house)
+        flatmate2 = Flatmate(flatmate2_name, flatmate2_days_in_house)
+        
+        pdf = FPDF(orientation='P', unit='pt', format='A4')
+        PdfReport(bill_file_name).generatePDF(pdf, flatmate1, flatmate2, bill)
+
+        cloud_invoice_link = FileSharer(f'{bill_file_name}.pdf').share()
+
+        return render_template('bill_form_page.html',
+                                result = True, 
+                                bill_form=billform,
+                                name1 =  flatmate1_name,
+                                name2 =  flatmate2_name,
+                                amount1 = flatmate1.pay(bill, flatmate2),
+                                amount2 = flatmate2.pay(bill, flatmate1),
+                                link = cloud_invoice_link)
+
         
 
 

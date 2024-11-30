@@ -3,13 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>Results</title>
 </head>
 <body>
-    {{name1}} pays {{amount1}} <br>
-    {{name2}} pays {{amount2}} <br>
-    
-    Click here to download your invoice 
-    <a href={{link}}> Bill Invoice </a>
+    <header>
+        <h1>Results</h1>
+    </header>
+    <main>
+        <div class="results">
+            {{name1}} pays {{amount1}} <br>
+            {{name2}} pays {{amount2}} <br>
+        </div>
+        <p>Click here to download your invoice:</p>
+        <a href="{{link}}">Bill Invoice</a>
+    </main>
+    <footer>
+        <p>&copy; 2024 Flatmates Bill Sharing App</p>
+    </footer>
 </body>
 </html>

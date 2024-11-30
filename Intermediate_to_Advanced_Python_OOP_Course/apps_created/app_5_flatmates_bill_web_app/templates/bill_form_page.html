@@ -3,35 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>The Bill Form</title>
 </head>
 <body>
-    <h2>The Bill Form</h2>
-    <p>Fill the form and click the button to get the results</p>
-
-    <form action="/result" method="post">
-        <hr>
-        <p>Bill Details</p>
-        {{bill_form.amount.label}} {{bill_form.amount}} 
-        <br> 
-        {{bill_form.period_name.label}} {{bill_form.period_name}}
-        <br>
-        {{bill_form.days.label}} {{bill_form.days}}
-        <hr>
-        <p>First Flatmate</p>
-        {{bill_form.name1.label}} {{bill_form.name1}}
-        <br>
-        {{bill_form.days_in_house1.label}} {{bill_form.days_in_house1}}
-        <hr>
-        <p>Second Flatmate</p>
-        {{bill_form.name2.label}} {{bill_form.name2}}
-        <br>
-        {{bill_form.days_in_house2.label}} {{bill_form.days_in_house2}}
-        <br>
-        <p>Bill Name</p>
-        {{bill_form.file_name.label}} {{bill_form.file_name}}
-        <hr>
-        {{bill_form.button}}    
-    </form>
+    <header>
+        <h1>The Bill Form</h1>
+    </header>
+    <main>
+        <p>Fill the form and click the button to get the results</p>
+        <form action="/bill" method="post"> <!-- action="/result"; If we want to show results on the same page, we can need to add same page url in action, but since we are posting the data, there should be post method in the class of this page -->
+            <hr>
+            <p>Bill Details</p>
+            {{bill_form.amount.label}} {{bill_form.amount}}
+            <br>
+            {{bill_form.period_name.label}} {{bill_form.period_name}}
+            <br>
+            {{bill_form.days.label}} {{bill_form.days}}
+            <hr>
+            <p>First Flatmate</p>
+            {{bill_form.name1.label}} {{bill_form.name1}}
+            <br>
+            {{bill_form.days_in_house1.label}} {{bill_form.days_in_house1}}
+            <hr>
+            <p>Second Flatmate</p>
+            {{bill_form.name2.label}} {{bill_form.name2}}
+            <br>
+            {{bill_form.days_in_house2.label}} {{bill_form.days_in_house2}}
+            <br>
+            <p>Bill Name</p>
+            {{bill_form.file_name.label}} {{bill_form.file_name}}
+            <hr>
+            {{bill_form.button}}
+            <!-- Following code is added here to display results on the same page -->
+            <br>
+            {% if result %}
+            <div class="results">
+                {{name1}} pays {{amount1}} <br>
+                {{name2}} pays {{amount2}} <br>
+            </div>
+            <p>Click here to download your invoice:</p>
+            <a href="{{link}}">Bill Invoice</a>
+            {% endif %}
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 Flatmates Bill Sharing App</p>
+    </footer>
 </body>
 </html>

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>Flatmates Bill App</title>
 </head>
 <body>
@@ -26,15 +27,11 @@
         </section>
 
         <section>
-            
-            <a href = {{url_for('BillFormPage')}}>Go to bill page</a>
-            
+            <a href="{{url_for('BillFormPage')}}"><button>Go to bill page</button></a>
         </section>
-
     </main>
     <footer>
         <p>&copy; 2024 Flatmates Bill Sharing App</p>
     </footer>
-
 </body>
 </html>

@@ -1,0 +1,27 @@
+Title: Maintainence calories calculator
+
+Description: A flask app where user will be able to input their age, height, weight, 
+activity level, gender, city, country. App will scrape current days temperature from the
+mentioned city, country. Using all these variables, app will calculate the required
+maintainence calories for the user.
+
+Objects:
+    - HomePage
+        - get() method to return some data
+    - CaloriesForm
+        - represents the form
+    - CaloriesFormPage
+        - get() method to display the form
+        - post() method to display the results
+    - ScrapeTemperature
+        - city
+        - country
+        - getTemperature()
+    - CalorieCalculator
+        - age
+        - height
+        - weight
+        - gender
+        - activity
+        - temperature
+        - calculateCalories()

@@ -45,4 +45,50 @@ print(request)
 # this will give you all the html content of url
 # the output will be ugly, if you want it to bi in better format, use pprint
 
-print(pprint(request.content))
+# print(pprint(request.content))
+# above will give you slightly better formatted content
+
+#
+'''
+- The content attribute of requests is generally used when you want to extract files,
+pdf content, images etc. But in case we want to extract some text/numbers form web page, 
+we use text attribute
+content attribute returns byte type data
+text attribute returns string
+'''
+
+# print(request.text)
+
+# we will use selector lib to extract temperature from the text
+
+from selectorlib import Extractor
+
+# Extractor is the class that contains the methods we need for extraction
+
+extractor = Extractor.from_yaml_file('temperature.yaml')
+
+''' 
+In above line of code, we are instansiating the Extractor class. We do it differently than
+usual method - by calling a method of it. You don't always initialize the class using ()
+after class name, but also by a method that initializes the class.
+
+The way we extract by this way is - 
+    - Create a yaml file in root dir (preferably)
+    - Add this ->
+        temp:
+            xpath: ''
+    - the xpath should be identifier of the value we want to extract. find it on the webpage
+    - provide this yaml file's path to - Extractor.from_yaml_file() and execute
+
+This creates teh extractor object
+'''
+
+print(extractor)
+
+# print(extractor.extract(request.text))
+
+raw_temp = extractor.extract(request.text)
+
+temp = float(raw_temp['temp'].replace("\xa0°C", ""))
+
+print(temp)

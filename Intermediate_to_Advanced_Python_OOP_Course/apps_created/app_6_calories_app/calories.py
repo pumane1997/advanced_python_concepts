@@ -45,3 +45,7 @@ class CalorieCalculator:
         maintenance_calories = tdee * temperature_factor
 
         return round(maintenance_calories, 2)
+
+
+# my_cals = CalorieCalculator('male', 28, 170, 74, 2, 30).calculateCalories()
+# print(my_cals)

@@ -3,9 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>Calories</title>
 </head>
 <body>
-    
+    <header>
+        <h1>The Calorie Calculator</h1>
+    </header>
+    <main>
+        <p>Fill in the form and click the button to know how many calories you need.<br>
+        Lets get some info about you first</p>
+        <br>
+        <form action="/calories" method="post"> <!-- method="post" -->
+            <hr>
+            <p>Inputs</p>
+            {{calorie_form.weight.label}} 
+            <br>
+            {{calorie_form.weight}}
+            <br>
+            {{calorie_form.height.label}} 
+            <br>
+            {{calorie_form.height}}
+            <br>
+            {{calorie_form.age.label}} 
+            <br>
+            {{calorie_form.age}}
+            <br>
+            {{calorie_form.gender.label}} 
+            <br>
+            {{calorie_form.gender}}
+            <br>
+            {{calorie_form.activity.label}} 
+            <br>
+            {{calorie_form.activity}}
+            <br>
+            <p>Tell us where you are so we can include today’s temperature in the calculation</p>
+            <br>
+            {{calorie_form.country.label}} 
+            <br>
+            {{calorie_form.country}}
+            <br>
+            {{calorie_form.city.label}} 
+            <br>
+            {{calorie_form.city}}
+            <hr>
+            {{calorie_form.button}}
+            <br>
+            {% if result %}
+            <div class="results">
+                Your maintainence calories today are {{maintainence_calories}} <br>
+            </div>
+            {% endif %}
+
+
 </body>
 </html>

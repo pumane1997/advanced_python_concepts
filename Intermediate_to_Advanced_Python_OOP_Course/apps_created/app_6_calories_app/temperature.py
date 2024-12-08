@@ -19,12 +19,19 @@ class TemperatureScrapper:
         self.country = country
 
     def getTemperature(self, header = default_header):
-        url = f'https://www.timeanddate.com/weather/{self.country}/{self.city}'
-        request = requests.get(url, headers = header)
-        extractor = Extractor.from_yaml_file('temperature.yaml')
-        raw_temperature = extractor.extract(request.text)
-        temperature = float(raw_temperature['temp'].replace("\xa0°C", ""))
+        try:
+            url = f'https://www.timeanddate.com/weather/{self.country}/{self.city}'
+            request = requests.get(url, headers = header)
+            extractor = Extractor.from_yaml_file('temperature.yaml')
+            raw_temperature = extractor.extract(request.text)
+            temperature = float(raw_temperature['temp'].replace("\xa0°C", ""))
+        except AttributeError as e:
+            print("No temperature was returned. Setting temperature to 15", e)
+            temperature = 15
+        else:
+            print("Both values were valid.")
+        
         return temperature
 
-pune_temp = TemperatureScrapper('Pune', 'India').getTemperature()
-print(pune_temp)
+# pune_temp = TemperatureScrapper('Pune', 'India').getTemperature()
+# print(str(pune_temp) +' : Todays Tempreature')

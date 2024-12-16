@@ -1,7 +1,7 @@
 import requests
 from selectorlib import Extractor
 
-default_header = {
+default_header = { # this should be a class parameter (including base url & yaml path)
     'pragma' : 'no-cache',
     'cache-control' : 'no-cache',
     'dnt' : '1',
@@ -11,12 +11,21 @@ default_header = {
     'accept-language' : 'en-US,en;q=0.9,fr;q=0.8,es;q=0.7'
 }
 
+'''
+Ideal way to structure this class (suggested in tutorial)
+
+- def __init__
+- def _build_url -> returns url
+- def _scrape -> scrapes temp
+- def get -> cleans and returns temp
+''' 
+
 class TemperatureScrapper:
     ''' xx '''
 
     def __init__(self, city, country):
-        self.city = city
-        self.country = country
+        self.city = city.replace(' ', '-')
+        self.country = country.replace(' ', '-')
 
     def getTemperature(self, header = default_header):
         try:

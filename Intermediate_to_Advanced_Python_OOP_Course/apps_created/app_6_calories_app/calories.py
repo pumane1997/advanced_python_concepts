@@ -1,3 +1,4 @@
+from temperature import TemperatureScrapper
 
 class CalorieCalculator:
     ''' Calorie Calculator based on gender, age, height, weight, activity level, and 
@@ -49,3 +50,8 @@ class CalorieCalculator:
 
 # my_cals = CalorieCalculator('male', 28, 170, 74, 2, 30).calculateCalories()
 # print(my_cals)
+
+if __name__ == "__main__":
+    temperature = TemperatureScrapper(city='pune', country='india').getTemperature()
+    my_cals = CalorieCalculator('male', 28, 170, 74, 2, temperature).calculateCalories()
+    print(my_cals)

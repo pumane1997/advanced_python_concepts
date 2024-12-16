@@ -31,9 +31,9 @@ class CaloriesFormPage(MethodView):
         height = float(calorie_form.height.data)
         age = float(calorie_form.age.data)
         gender = calorie_form.gender.data
-        activity = float(calorie_form.weight.data)
-        city = calorie_form.weight.data
-        country = calorie_form.weight.data
+        activity = float(calorie_form.activity.data)
+        city = calorie_form.city.data
+        country = calorie_form.country.data
 
         # Calculate temperature and maintainence calories
 

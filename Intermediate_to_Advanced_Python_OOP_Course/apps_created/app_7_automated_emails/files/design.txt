@@ -1,0 +1,21 @@
+Title: Automated Emails
+
+Description: An app that reads username, email address, and their interestes from 
+an Excel file and sends automated emails to users with news based on their interestes
+
+Objects:
+
+    - ExcelData
+        - file_path
+        - get_data()
+
+    - News
+        - data 
+        - Get(interest) 
+
+    - Email
+        - sender
+        - recepient
+        - subject
+        - body
+        - Send(sender, recepient, body, subject)

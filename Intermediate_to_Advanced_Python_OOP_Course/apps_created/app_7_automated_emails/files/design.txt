@@ -9,7 +9,7 @@ Objects:
         - file_path
         - get_data()
 
-    - News
+    - NewsFeed
         - data 
         - Get(interest) 
 

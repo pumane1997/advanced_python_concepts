@@ -23,7 +23,3 @@ class Newsfeed:
         for article in articles:
             email_body = email_body + article['title'] + "\n" + article['url'] + "\n\n"
         return email_body
-
-
-# news = Newsfeed(interests='health',from_date='2024-12-22',to_date='2024-12-22',language='en')
-# print(news.get())

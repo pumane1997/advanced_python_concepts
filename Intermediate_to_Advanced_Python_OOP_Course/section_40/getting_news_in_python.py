@@ -39,8 +39,9 @@ top_headlines = newsapi2.get_top_headlines(#q='politics',
 # another way to get the api response
 
 url = "http://newsapi.org/v2/everything?" \
-"qInTitle=nasa&" \
+"qInTitle=health&" \
 "from=2024-12-22&" \
+"to=2024-12-22&" \
 "sortBy=publishedAt&" \
 "language=en&" \
 "apiKey=82871d18df4441e09a08f20f5e74ac3a"
@@ -54,5 +55,15 @@ content = response.text
 # we should use json() for api response
 
 content = response.json()
-pprint.pprint(content['articles'][0]['title'])
-# ['title']
+# pprint.pprint(content['articles'][0]['title'])
+# pprint.pprint(content)
+articles = content['articles']
+# pprint.pprint(articles)
+
+email_body = ''
+for article in articles:
+    email_body = email_body + article['title'] + "\n" + article['url'] + "\n\n"
+    
+
+print(email_body)
+

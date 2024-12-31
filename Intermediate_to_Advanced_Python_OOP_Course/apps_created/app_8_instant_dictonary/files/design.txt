@@ -1,0 +1,14 @@
+Title: Instant dictonary web app
+
+Description: A web app that lets user type term in the text box and returns the 
+English definition of that term instantly as soon as user has fininshed typing.
+The webapp consists of a website with nav menu, home, dictonary, about page.
+
+Objects:
+    Definition
+        - term
+        - get()
+    Navbar
+    HomePage
+    AboutPage
+    DictonaryPage

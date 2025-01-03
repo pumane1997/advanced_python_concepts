@@ -1,3 +1,4 @@
+import pandas as pd
 
 class Definition:
     ''' 
@@ -6,7 +7,9 @@ class Definition:
     '''
 
     def __init__(self, term):
-        term = self.term
+        self.term = term 
 
     def get(self):
-        pass 
+        data = pd.read_csv('data.csv')
+        data = tuple(data.loc[data['word'] == self.term]['definition']) 
+        return data

@@ -1,5 +1,6 @@
 import justpy as jp
 from definition import Definition
+from webapp import layout
 
 class Dictonary:
     '''
@@ -11,7 +12,11 @@ class Dictonary:
     @classmethod
     def serve(cls, req):
         wp = jp.QuasarPage(tailwind=True) 
-        div = jp.Div(a=wp, classes='bg-grey-400 h-screen')
+
+        lay = layout.DefaultLayout(a=wp)
+        container = jp.QPageContainer(a=lay)
+
+        div = jp.Div(a=container, classes='bg-grey-400 h-screen')
         jp.Div(a=div, text='Instant English Dictonary', 
                classes='grid grid-cols-1 gap-4 p-4 text-4xl m-2')
         jp.Div(a=div, text='Get the meaning of any word instantly as you type', 

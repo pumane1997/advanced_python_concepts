@@ -1,8 +1,9 @@
 import justpy as jp
 from definition import Definition
 from webapp import layout
+from webapp import page
 
-class Dictonary:
+class Dictonary(page.Page):
     '''
         xxxx
     '''

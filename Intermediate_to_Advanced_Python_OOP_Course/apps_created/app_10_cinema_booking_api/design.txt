@@ -42,7 +42,7 @@ cinema.db
 banking.db
  - user_name
  - card_type
- - card_name
+ - card_number
  - cvc
  - card_holder_name
  - balance

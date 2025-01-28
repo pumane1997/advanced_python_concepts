@@ -1,53 +1,23 @@
 
-class User:
-    ''' This class represents User'''
+import create_databases
+import os
 
-    def __init__(self, name):
-        self.name = name
+# create databases if they do not exist
+create_databases.create_db_if_not_exists('cinema.db')
+create_databases.create_db_if_not_exists('banking.db')
 
-    def buy(preferred_seat, card):
-        pass
+# create tables
+create_databases.create_seat()
+create_databases.create_card()
+
+# populate tables
+if not create_databases.check_if_records_exists('cinema.db', 'Seat'):
+    create_databases.populate_seat()
+
+if not create_databases.check_if_records_exists('banking.db', 'Card'):
+    create_databases.populate_card()
+
+# print(create_databases.check_if_records_exists('cinema.db', 'Seat'))
 
 
-class Seat:
-    ''' This class represents User'''
 
-    database = 'cinema.db'
-
-    def __init__(self, seat_id, price):
-        self.seat_id = seat_id
-
-    def get_price():
-        pass
-
-    def is_free():
-        pass
-
-    def occupy():
-        pass
-
-class Card:
-    ''' This class represents User'''
-
-    database = 'banking.db'
-
-    def __init__(self, type, number, cvc, name):
-        self.type = type
-        self.number = number
-        self.cvc = cvc
-        self.name = name
-
-    def validate():
-        pass
-
-class Ticket:
-    ''' This class represents User'''
-
-    def __init__(self, ticket_number, user, price, seat):
-        self.ticket_number = ticket_number
-        self.user = user
-        self.price = price
-        self.seat = seat
-
-    def to_pdf():
-        pass

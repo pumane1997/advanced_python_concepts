@@ -1,0 +1,48 @@
+Title: Cinema Booking App
+
+Description: Command-line app. User will be able to give inputs like name, preferred seat number, 
+card number, cvc, card holder name and make a purchase. Afetr purchase, the seat number will show as
+taken
+
+Objects:
+    - User
+        - name
+        - buy (preferred_seat, card)
+    - Seat
+        - database
+        - seat id
+        - is_free()
+        - occupy()
+        - price
+    - Card
+        - database
+        - card type
+        - card number
+        - cvc
+        - card holder name
+        - validate()
+    - Ticket 
+        - ticket number
+        - user
+        - price
+        - seat
+        - to_pdf()
+
+
+-----------------
+
+Schemas:
+
+cinema.db
+ - seat_id
+ - seat_number
+ - is_taken
+ - price
+
+banking.db
+ - user_name
+ - card_type
+ - card_name
+ - cvc
+ - card_holder_name
+ - balance

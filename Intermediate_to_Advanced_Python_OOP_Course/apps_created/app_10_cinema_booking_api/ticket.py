@@ -5,8 +5,7 @@ from fpdf import FPDF
 class Ticket:
     ''' This class represents Ticket'''
 
-    def __init__(self, ticket_number, user, price, seat):
-        self.ticket_number = ticket_number
+    def __init__(self, user, price, seat):
         self.user = user
         self.price = price
         self.seat = seat
@@ -15,6 +14,9 @@ class Ticket:
         '''
         A method to generate a ticket
         '''
+
+        ticket_number = 'ADWPNCSDU78' 
+
         pdf = FPDF(orientation='P', unit='pt', format='A4')
 
         # Adding page
@@ -31,7 +33,7 @@ class Ticket:
         pdf.set_font(family='Times', size=14, style='B')
         pdf.cell(w=200, h=40, txt='Ticket Number', border=0)
         pdf.cell(w=10, h=40, txt='', border=0)
-        pdf.cell(w=200, h=40, txt=f'{self.ticket_number}', border=0, ln=1)
+        pdf.cell(w=200, h=40, txt=f'{ticket_number}', border=0, ln=1)
 
         # Adding an empty cell
         pdf.cell(w=0, h=20, txt='', border=0, ln=1)
@@ -63,23 +65,18 @@ class Ticket:
         # Adding an empty cell
         pdf.cell(w=0, h=20, txt='', border=0, ln=1)
 
-
-
-
-
-
         # Change the dir to save file
         os.chdir('tickets')
 
         # Save the output file
-        pdf.output(f'{self.ticket_number}.pdf')
+        pdf.output(f'{ticket_number}.pdf')
 
         # Open the file
-        webbrowser.open(f'{self.ticket_number}.pdf')
+        webbrowser.open(f'{ticket_number}.pdf')
 
 
 #---------------
 
-my_ticket = Ticket('ADWPNCSDU78', 'John Doe', 10, 'A1')
+my_ticket = Ticket('John Doe', 10, 'A1')
 
 my_ticket.to_pdf()

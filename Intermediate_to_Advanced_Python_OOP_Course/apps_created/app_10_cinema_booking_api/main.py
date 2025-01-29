@@ -1,6 +1,10 @@
 
 import create_databases
 import os
+from card import Card
+from user import User
+from ticket import Ticket
+from seat import Seat
 
 # create databases if they do not exist
 create_databases.create_db_if_not_exists('cinema.db')
@@ -16,7 +20,6 @@ if not create_databases.check_if_records_exists('cinema.db', 'Seat'):
 
 if not create_databases.check_if_records_exists('banking.db', 'Card'):
     create_databases.populate_card()
-
 
 
 

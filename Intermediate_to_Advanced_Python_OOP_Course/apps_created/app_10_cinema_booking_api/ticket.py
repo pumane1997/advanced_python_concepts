@@ -60,7 +60,7 @@ class Ticket:
         pdf.set_font(family='Times', size=14, style='B')
         pdf.cell(w=200, h=40, txt='Seat', border=0)
         pdf.cell(w=10, h=40, txt='', border=0)
-        pdf.cell(w=200, h=40, txt=f'{self.seat}', border=0, ln=1)
+        pdf.cell(w=200, h=40, txt=f'{self.seat.seat_number}', border=0, ln=1)
 
         # Adding an empty cell
         pdf.cell(w=0, h=20, txt='', border=0, ln=1)

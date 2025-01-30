@@ -1,10 +1,12 @@
+from ticket import Ticket
+
 class User:
     ''' This class represents User'''
 
     def __init__(self, name):
         self.name = name
 
-    def buy(seat, card):
+    def buy(self, seat, card):
         if seat.is_free():
             if card.validate(): 
                 seat.occupy()

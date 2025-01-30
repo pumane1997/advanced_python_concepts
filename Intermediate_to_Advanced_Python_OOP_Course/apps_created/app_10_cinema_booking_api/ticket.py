@@ -66,7 +66,7 @@ class Ticket:
         pdf.cell(w=0, h=20, txt='', border=0, ln=1)
 
         # Change the dir to save file
-        os.chdir('tickets')
+        os.chdir('./tickets')
 
         # Save the output file
         pdf.output(f'{ticket_number}.pdf')
@@ -77,6 +77,6 @@ class Ticket:
 
 #---------------
 
-my_ticket = Ticket('John Doe', 10, 'A1')
+# my_ticket = Ticket('John Doe', 10, 'A1')
 
-my_ticket.to_pdf()
+# my_ticket.to_pdf()

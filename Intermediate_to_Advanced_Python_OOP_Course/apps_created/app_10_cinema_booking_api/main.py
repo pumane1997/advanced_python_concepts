@@ -21,5 +21,22 @@ if not create_databases.check_if_records_exists('cinema.db', 'Seat'):
 if not create_databases.check_if_records_exists('banking.db', 'Card'):
     create_databases.populate_card()
 
+# implement core logic
 
+if __name__ == "__main__":
 
+    # taking inputs
+    name = input('Your full name: ')
+    seat_number = input('Preferred seat number: ')
+    card_type = input('Your card type: ')
+    card_number = int(input('Your card_number: '))
+    cvc = int(input('Your cvc: '))
+    card_holder_name = input('card_holder_name: ')
+
+    # Instansiating objects
+    card = Card(card_type=card_type, card_number=card_number,
+                cvc=cvc, card_holder_name=card_holder_name)
+    seat = Seat(seat_number=seat_number)
+    user = User(name=name)
+
+    print(user.buy(seat=seat, card=card))

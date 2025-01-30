@@ -51,4 +51,4 @@ class Seat:
 
 #----
 
-print(Seat('A1').get_price())
+# print(Seat('A1').get_price())
